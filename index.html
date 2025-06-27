@@ -31,6 +31,9 @@
     <link rel="canonical" href="https://github.com/stebanszs" />
     <meta name="format-detection" content="telephone=no" />
   </head>
+
+    <!-- Linkeados -->
+    <link rel="stylesheet" href="css/style.css" />
   <body>
     <header>
       <nav>
@@ -133,10 +136,53 @@
           </p>
         </div>
       </section>
+
+      <section id="contact">
+        <h2>Contacto</h2>
+        <p>¿Interesado en colaborar o tienes alguna pregunta? Envíame un mensaje y te responderé pronto.</p>
+        
+        <form action="mailto:miguelestebanbravodiaz9@gmail.com" method="post" enctype="text/plain" class="contact-form">
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Asunto:</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit">Enviar Mensaje</button>
+        </form>
+        
     </main>
 
     <footer>
-      <p>© 2025 StebanSzs. Todos los derechos reservados.</p>
+      <div class="footer-content">
+        <p>© 2025 StebanSzs. Todos los derechos reservados.</p>
+        <div class="social-links">
+          <a href="https://github.com/stebanszs" target="_blank" aria-label="GitHub">
+            <img src="images/github.svg" alt="GitHub" width="24" height="24">
+          </a>
+          <a href="https://linkedin.com/in/stebanszs" target="_blank" aria-label="LinkedIn">
+            <img src="images/linkedin.svg" alt="LinkedIn" width="24" height="24">
+          </a>
+          <a href="mailto:miguelestebanbravodiaz9@gmail.com" aria-label="Email">
+            <img src="images/email.svg" alt="Email" width="24" height="24">
+          </a>
+        </div>
+      </div>
+      </style>
     </footer>
   </body>
 </html>
