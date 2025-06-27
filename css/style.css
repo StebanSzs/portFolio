@@ -169,6 +169,62 @@ nav a:hover {
   border-radius: 50%;
   border: 3px solid #00d4ff;
   box-shadow: 0 0 20px #00d4ff, 0 0 40px rgba(0, 212, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
+  cursor: pointer;
+  position: relative;
+}
+
+.foto-perfil::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00d4ff, #0099cc, #006699, #00d4ff);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: gradientRotate 4s ease infinite;
+  opacity: 0.7;
+}
+
+.foto-perfil:hover {
+  transform: perspective(1000px) rotateX(3deg) rotateY(3deg) scale(1.03);
+  box-shadow: 
+    0 0 15px #00d4ff, 
+    0 0 30px rgba(0, 212, 255, 0.3),
+    0 10px 20px rgba(0, 212, 255, 0.1);
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(5deg) rotateY(10deg) translateY(-10px);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(20deg) translateY(-5px);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(-5deg) rotateY(10deg) translateY(-10px);
+  }
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 h2 {
@@ -303,6 +359,8 @@ h2 {
   width: 100%;
   background: rgba(15, 15, 30, 0.8);
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .skill-item {
@@ -311,12 +369,62 @@ h2 {
   align-items: center;
   gap: 10px;
   padding: 10px;
+  background: rgba(0, 212, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  animation: float3D 8s ease-in-out infinite;
+}
+
+.skill-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
+  border-radius: 8px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-item:hover::before {
+  opacity: 1;
+}
+
+.skill-item:hover {
+  transform: translateZ(3px) rotateX(2deg) rotateY(2deg) scale(1.02);
+  box-shadow: 
+    0 2px 8px rgba(0, 212, 255, 0.1),
+    0 0 5px rgba(0, 212, 255, 0.2);
+  animation-play-state: paused;
+}
+
+.skill-item:nth-child(odd) {
+  animation-delay: -2s;
+}
+
+.skill-item:nth-child(even) {
+  animation-delay: -4s;
 }
 
 .skill-icon {
   width: clamp(48px, 8vw, 72px);
   height: clamp(48px, 8vw, 72px);
   margin-right: 0;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
+}
+
+.skill-item:hover .skill-icon {
+  transform: translateZ(2px) rotateY(15deg);
+  filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.4));
 }
 
 .skill-name {
@@ -324,16 +432,40 @@ h2 {
   color: #ffffff;
   font-size: clamp(0.8rem, 2vw, 0.9rem);
   text-align: center;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.skill-item:hover .skill-name {
+  color: #00d4ff;
+  text-shadow: 0 0 3px rgba(0, 212, 255, 0.5);
+  transform: translateZ(1px);
 }
 
 /* Efectos de glow adicionales */
 .skill-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   transition: transform 0.3s ease;
 }
 
 .skill-item:hover .skill-icon {
-  filter: drop-shadow(0 0 10px #00d4ff);
+  filter: drop-shadow(0 0 5px #00d4ff);
+}
+
+/* Animaciones 3D para habilidades */
+@keyframes float3D {
+  0%, 100% {
+    transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateZ(0.5px) rotateX(0.3deg) rotateY(0.5deg);
+  }
+  50% {
+    transform: translateZ(0.3px) rotateX(0deg) rotateY(0.8deg);
+  }
+  75% {
+    transform: translateZ(0.5px) rotateX(-0.3deg) rotateY(0.5deg);
+  }
 }
 
 /* Experiencia responsive */
