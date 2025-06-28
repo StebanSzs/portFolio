@@ -85,32 +85,32 @@
 
     <main>
       <section id="home">
-        <h1>Miguel Esteban Bravo Diaz</h1>
+        <h1 tabindex="0" role="heading" aria-level="1">Miguel Esteban Bravo Diaz</h1>
         <img
           class="foto-perfil"
           src="images/fotoPerfl.jpg"
           alt="Foto de Esteban Bravo"
         />
-        <p>Siempre aprendiendo y buscando nuevos desafíos en la programación</p>
+        <p>Desarrollador Full Stack especializado en JavaScript, React y Node.js</p>
         <a href="#about" class="button">Ver porfolio</a>
       </section>
       <section id="about">
         <h2>Sobre mí</h2>
         <div class="about-content">
           <p>
-            Soy un desarrollador con experiencia en desarrollo de software y
-            conocimientos en telecomunicaciones. Mi enfoque combina habilidades
-            técnicas y creatividad para construir interfaces de usuario
-            funcionales y atractivas, mientras aplico principios de conectividad y
-          sistemas de red.
-        </p>
-        <p>
-          He trabajado en equipos multidisciplinarios para garantizar soluciones
-          tecnológicas innovadoras, siempre buscando la excelencia en la
-          experiencia del usuario y la eficiencia en la implementación de
-          proyectos. Me apasiona aprender y aplicar nuevas tecnologías para
-          enfrentar desafíos complejos en el desarrollo y la telecomunicación.
-        </p>
+            Soy un desarrollador full stack apasionado por crear soluciones tecnológicas innovadoras. 
+            Mi experiencia abarca tanto el desarrollo de software como el aseguramiento de la calidad, 
+            lo que me ha dado una perspectiva integral del ciclo de vida del desarrollo de aplicaciones.
+          </p>
+          <p>
+            Mi enfoque combina habilidades técnicas sólidas en programación con conocimientos en 
+            telecomunicaciones y testing. He trabajado en equipos multidisciplinarios desarrollando 
+            interfaces de usuario funcionales y atractivas, mientras aplico las mejores prácticas 
+            de desarrollo y calidad de software. Me especializo en JavaScript, ReactJS, NodeJS, 
+            Python y Java, siempre buscando aprender nuevas tecnologías para enfrentar desafíos 
+            complejos en el desarrollo web y móvil.
+          </p>
+        </div>
       </section>
 
       <section id="projects">
@@ -188,30 +188,30 @@
         <h2>Experiencia</h2>
         <div class="experience-container">
           <div class="experience-item">
-            <h3>Analista de aseguramiento de la calidad</h3>
+            <h3>Desarrollador Full Stack & Apoyo en QA</h3>
             <h4>WeKall</h4>
-            <p><strong>Julio 2024 - Julio 2025</strong></p>
+            <p><strong>Julio 2024 - Presente</strong></p>
             <p><em>Cali, Valle del Cauca, Colombia · En remoto</em></p>
             <p>
-              QA Analyst con experiencia en garantizar la calidad de los
-              productos desarrollados por el equipo. Mis responsabilidades
-              incluyen la creación y ejecución de casos de prueba, la
-              identificación y seguimiento de errores, y la colaboración
-              estrecha con desarrolladores y diseñadores para mejorar la
-              experiencia del usuario.
+              Como desarrollador full stack, me especializo en el desarrollo de aplicaciones web 
+              modernas utilizando tecnologías como JavaScript, ReactJS y NodeJS. Mi rol principal 
+              se centra en el diseño e implementación de interfaces de usuario intuitivas, desarrollo 
+              de APIs RESTful y la integración de servicios backend.
             </p>
             <p>
-              Realizo automatización de pruebas con Cypress, optimizando la
-              detección de errores y mejorando la eficiencia en los ciclos de
-              prueba. Implemento metodologías ágiles en los procesos de prueba,
-              optimizando los tiempos de entrega y asegurando productos robustos
-              y confiables.
+              Aunque mi experiencia en la empresa ha estado orientada principalmente al área de QA, 
+              mi enfoque siempre ha sido desde la perspectiva del desarrollo. He aportado 
+              significativamente al equipo implementando automatización de pruebas con Cypress, 
+              lo que me ha permitido fortalecer mis habilidades técnicas y adquirir una visión 
+              integral de la calidad del software.
             </p>
             <p>
-              Además, apoyo en temas de ISO 27001, asegurando el cumplimiento de
-              estándares de seguridad de la información, y en FinOps,
-              contribuyendo a la optimización de costos en la infraestructura
-              tecnológica.
+              Esta experiencia dual, combinando desarrollo y aseguramiento de calidad, me permite 
+              escribir código más robusto, anticipar fallos comunes y realizar procesos de debugging 
+              con mayor eficacia. Además, he participado en la implementación de metodologías ágiles, 
+              optimización de procesos, cumplimiento de estándares como ISO 27001 y en iniciativas 
+              de FinOps para la gestión eficiente de costos en infraestructura cloud, apalancado 
+              en mi formación en telecomunicaciones y desarrollo.
             </p>
           </div>
         </div>
@@ -224,28 +224,55 @@
           y te responderé pronto.
         </p>
         <form
-          action="mailto:miguelestebanbravodiaz9@gmail.com"
-          method="post"
-          enctype="text/plain"
           class="contact-form"
+          novalidate
         >
           <div class="form-group">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" required />
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder=" "
+              required 
+              autocomplete="name"
+            />
+            <label for="name">Nombre completo</label>
           </div>
           <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder=" "
+              required 
+              autocomplete="email"
+            />
+            <label for="email">Correo electrónico</label>
           </div>
           <div class="form-group">
-            <label for="subject">Asunto:</label>
-            <input type="text" id="subject" name="subject" required />
+            <input 
+              type="text" 
+              id="subject" 
+              name="subject" 
+              placeholder=" "
+              required 
+            />
+            <label for="subject">Asunto del mensaje</label>
           </div>
           <div class="form-group">
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="5" 
+              placeholder=" "
+              required
+            ></textarea>
+            <label for="message">Tu mensaje</label>
           </div>
-          <button type="submit">Enviar Mensaje</button>
+          <button type="submit">
+            <span class="button-text">Enviar Mensaje</span>
+            <span class="button-icon"></span>
+          </button>
         </form>
       </section>
     </main>
@@ -281,6 +308,9 @@
     </footer>
 
     <!-- JavaScript Modules -->
+    <script src="js/typewriter-h1.js"></script>
+    <script src="js/contact-form.js"></script>
+    <script src="js/project-animations.js"></script>
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/particles.js"></script>

@@ -151,8 +151,152 @@ nav a:hover {
 #home h1 {
   font-size: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 20px;
-  color: #00d4ff;
-  text-shadow: 0 0 20px #00d4ff;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(0, 212, 255, 0.3),
+    0 0 20px rgba(0, 212, 255, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+  background: linear-gradient(
+    45deg, 
+    #ffffff 25%, 
+    #00d4ff 50%, 
+    #ffffff 75%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    textShine 4s ease-in-out infinite,
+    subtleFloat 6s ease-in-out infinite,
+    glowPulse 3s ease-in-out infinite;
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+}
+
+/* Animación de escritura */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Animación del cursor parpadeante */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00d4ff;
+  }
+}
+
+/* Ocultar cursor después de la animación */
+#home h1.typing-complete {
+  border-right: none;
+  animation: none;
+}
+
+/* Subrayado neón que aparece después */
+#home h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: -5%;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00d4ff, #0099cc, #00d4ff);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  box-shadow: 
+    0 0 8px #00d4ff,
+    0 0 16px #00d4ff,
+    0 0 24px rgba(0, 212, 255, 0.5);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+/* Mostrar subrayado cuando se complete el typing */
+#home h1.typing-complete::after {
+  width: 110%;
+  opacity: 1;
+  animation: neonGlow 2s ease-in-out 0.5s infinite;
+}
+
+/* Animación de crecimiento del subrayado */
+@keyframes growUnderline {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 110%;
+    opacity: 1;
+  }
+}
+
+/* Animación de brillo neón */
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 8px #00d4ff,
+      0 0 16px #00d4ff,
+      0 0 24px rgba(0, 212, 255, 0.5);
+    background-position: 0% 50%;
+  }
+  50% {
+    box-shadow: 
+      0 0 12px #00d4ff,
+      0 0 24px #00d4ff,
+      0 0 36px rgba(0, 212, 255, 0.8);
+    background-position: 100% 50%;
+  }
+}
+
+/* Hacer el h1 relativo para posicionar el subrayado */
+#home h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+/* Responsive para el efecto typewriter */
+@media (max-width: 768px) {
+  #home h1 {
+    animation-duration: 2.5s;
+    letter-spacing: 0.05em;
+  }
+  
+  #home h1::after {
+    animation-delay: 3.8s, 4.8s;
+  }
+}
+
+/* Soporte para usuarios que prefieren animaciones reducidas */
+@media (prefers-reduced-motion: reduce) {
+  #home h1 {
+    animation: none;
+    border-right: none;
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+  }
+  
+  #home h1::after {
+    animation: none;
+    width: 110%;
+    opacity: 1;
+  }
 }
 
 #home p {
@@ -171,9 +315,11 @@ nav a:hover {
   box-shadow: 0 0 20px #00d4ff, 0 0 40px rgba(0, 212, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform-style: preserve-3d;
-  animation: float 6s ease-in-out infinite;
-  cursor: pointer;
+  animation: float 8s ease-in-out infinite;
+  cursor: default;
   position: relative;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .foto-perfil::before {
@@ -192,11 +338,11 @@ nav a:hover {
 }
 
 .foto-perfil:hover {
-  transform: perspective(1000px) rotateX(3deg) rotateY(3deg) scale(1.03);
+  transform: perspective(1000px) rotateX(15deg) rotateY(25deg) scale(1.1);
   box-shadow: 
-    0 0 15px #00d4ff, 
-    0 0 30px rgba(0, 212, 255, 0.3),
-    0 10px 20px rgba(0, 212, 255, 0.1);
+    0 0 30px #00d4ff, 
+    0 0 60px rgba(0, 212, 255, 0.5),
+    0 20px 40px rgba(0, 212, 255, 0.3);
   animation-play-state: paused;
 }
 
@@ -205,13 +351,13 @@ nav a:hover {
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
   }
   25% {
-    transform: perspective(1000px) rotateX(5deg) rotateY(10deg) translateY(-10px);
+    transform: perspective(1000px) rotateX(1deg) rotateY(2deg) translateY(-3px);
   }
   50% {
-    transform: perspective(1000px) rotateX(0deg) rotateY(20deg) translateY(-5px);
+    transform: perspective(1000px) rotateX(0deg) rotateY(4deg) translateY(-1px);
   }
   75% {
-    transform: perspective(1000px) rotateX(-5deg) rotateY(10deg) translateY(-10px);
+    transform: perspective(1000px) rotateX(-1deg) rotateY(2deg) translateY(-3px);
   }
 }
 
@@ -253,7 +399,7 @@ h2 {
 .button:hover {
   background: #00a8cc;
   box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   text-decoration: none;
   color: #000000;
 }
@@ -311,11 +457,185 @@ h2 {
   justify-self: center;
   color: #ffffff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
 }
 
 .project-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 30px rgba(0, 212, 255, 0.5);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(0, 212, 255, 0.4),
+    0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+/* Imagen del proyecto con animaciones */
+.project-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  filter: brightness(0.9) saturate(1.1);
+  animation: projectImageFloat 4s ease-in-out infinite;
+}
+
+/* Animación de entrada para las imágenes de proyectos */
+.project-item:nth-child(odd) .project-image {
+  animation-delay: 0.5s;
+}
+
+.project-item:nth-child(even) .project-image {
+  animation-delay: 1s;
+}
+
+@keyframes projectImageFloat {
+  0%, 100% {
+    transform: translateY(0) rotateZ(0deg);
+    filter: brightness(0.9) saturate(1.1);
+  }
+  25% {
+    transform: translateY(-2px) rotateZ(0.5deg);
+    filter: brightness(0.95) saturate(1.15);
+  }
+  50% {
+    transform: translateY(-4px) rotateZ(0deg);
+    filter: brightness(1) saturate(1.2);
+  }
+  75% {
+    transform: translateY(-2px) rotateZ(-0.5deg);
+    filter: brightness(0.95) saturate(1.15);
+  }
+}
+
+/* Efecto de pulso en el borde */
+.project-image {
+  position: relative;
+}
+
+.project-image::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  border-radius: 8px;
+  opacity: 0;
+  animation: pulseBorder 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* Efecto de glow que se activa en hover */
+.project-item:hover .project-image::before {
+  animation: glowBorder 1s ease-in-out infinite;
+}
+
+@keyframes glowBorder {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+  }
+}
+
+/* Efectos de hover en la imagen */
+.project-item:hover .project-image {
+  transform: scale(1.05) rotateZ(1deg);
+  filter: brightness(1.1) saturate(1.3) contrast(1.1);
+  border-color: #00d4ff;
+  box-shadow: 
+    0 0 15px rgba(0, 212, 255, 0.5),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* Overlay con efecto de brillo */
+.project-image::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg, 
+    transparent 30%, 
+    rgba(0, 212, 255, 0.1) 50%, 
+    transparent 70%
+  );
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.project-item:hover .project-image::before {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* Efecto de partículas flotantes */
+.project-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px, 25px 25px, 15px 15px;
+  opacity: 0;
+  animation: floatParticles 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.project-item:hover .project-image::after {
+  opacity: 1;
+}
+
+/* Animación de partículas flotantes */
+@keyframes floatParticles {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-2px) rotate(1deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-4px) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-2px) rotate(-1deg);
+    opacity: 0.6;
+  }
+}
+
+/* Contenido del proyecto */
+.project-content {
+  position: relative;
+  z-index: 2;
 }
 
 /* Enlaces de proyectos */
@@ -369,14 +689,14 @@ h2 {
   align-items: center;
   gap: 10px;
   padding: 10px;
-  background: rgba(0, 212, 255, 0.03);
+  background: rgba(0, 212, 255, 0.01);
   border-radius: 8px;
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  border: 1px solid rgba(0, 212, 255, 0.08);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
-  animation: float3D 8s ease-in-out infinite;
+  animation: float3D 12s ease-in-out infinite;
 }
 
 .skill-item::before {
@@ -386,7 +706,7 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
+  background: linear-gradient(45deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 204, 0.05));
   border-radius: 8px;
   z-index: -1;
   opacity: 0;
@@ -419,7 +739,7 @@ h2 {
   margin-right: 0;
   transition: all 0.4s ease;
   transform-style: preserve-3d;
-  filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
+  filter: drop-shadow(0 0 3px rgba(0, 212, 255, 0.2));
 }
 
 .skill-item:hover .skill-icon {
@@ -534,79 +854,196 @@ h2 {
 .contact-form {
   width: 100%;
   max-width: 600px;
-  background: rgba(15, 15, 30, 0.8);
-  padding: clamp(20px, 5vw, 30px);
-  border: 2px solid #00d4ff;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  background: rgba(15, 15, 30, 0.9);
+  padding: clamp(25px, 5vw, 35px);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    0 0 30px rgba(0, 212, 255, 0.2),
+    0 10px 40px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: left;
+  position: relative;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #ffffff;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-weight: 500;
+  color: #888;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  background: transparent;
+  padding: 0 5px;
+  z-index: 1;
+}
+
+.form-group textarea + label {
+  top: 20px;
+  transform: translateY(0);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: clamp(10px, 3vw, 12px);
-  border: 2px solid #333;
-  border-radius: 6px;
-  font-size: clamp(14px, 3vw, 16px);
+  padding: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 16px;
   font-family: inherit;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-sizing: border-box;
-  background: rgba(20, 20, 40, 0.8);
+  background: rgba(25, 25, 45, 0.8);
   color: #ffffff;
+  position: relative;
+  z-index: 0;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #888;
-  opacity: 1;
+  color: transparent;
+}
+
+/* Estados activos de los labels */
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  transform: translateY(0);
+  font-size: 0.85rem;
+  color: #00d4ff;
+  background: rgba(15, 15, 30, 0.9);
+  padding: 0 8px;
+  font-weight: 600;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: #00d4ff;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  box-shadow: 
+    0 0 0 1px #00d4ff,
+    0 0 20px rgba(0, 212, 255, 0.3);
+  background: rgba(30, 30, 50, 0.9);
 }
 
 .form-group textarea {
   resize: none;
-  min-height: 100px;
-  height: clamp(100px, 20vw, 120px);
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+/* Estilos para validación */
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ff4757;
+  box-shadow: 
+    0 0 0 1px #ff4757,
+    0 0 15px rgba(255, 71, 87, 0.3);
+}
+
+.form-group.error label {
+  color: #ff4757;
+}
+
+.error-message {
+  color: #ff4757;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .contact-form button {
   width: 100%;
-  padding: clamp(12px, 3vw, 14px);
-  background: #00d4ff;
+  padding: 16px;
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
   color: #000000;
   border: none;
-  border-radius: 6px;
-  font-size: clamp(14px, 3vw, 16px);
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-shadow: none;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  box-shadow: 
+    0 4px 15px rgba(0, 212, 255, 0.4),
+    0 0 20px rgba(0, 212, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-form button:hover::before {
+  left: 100%;
 }
 
 .contact-form button:hover {
-  background: #00a8cc;
-  box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+  background: linear-gradient(135deg, #00b8e6, #007aa3);
+  box-shadow: 
+    0 6px 20px rgba(0, 212, 255, 0.6),
+    0 0 30px rgba(0, 212, 255, 0.4);
   transform: translateY(-2px);
+}
+
+.contact-form button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 10px rgba(0, 212, 255, 0.4),
+    0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.contact-form button.loading {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.button-icon {
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.contact-form button:hover .button-icon {
+  transform: scale(1.1);
 }
 
 /* Footer responsive */
@@ -838,5 +1275,216 @@ footer {
   nav li {
     margin: 0 10px;
   }
+}
+
+/* Clase para activar el efecto typewriter */
+#home h1.typewriter-effect {
+  overflow: hidden;
+  border-right: 3px solid #00d4ff;
+  white-space: nowrap;
+  margin: 0 auto 20px auto;
+  letter-spacing: 0.1em;
+  width: 0;
+  animation: typing 3.5s steps(25, end) 0.5s forwards, 
+             blink-caret 0.75s step-end infinite;
+}
+
+/* Estado inicial - texto invisible para el efecto */
+#home h1.typewriter-init {
+  color: transparent;
+  text-shadow: none;
+}
+
+/* Estilos adicionales para efectos avanzados del h1 */
+
+/* Animaciones de brillo y flotación para el h1 */
+@keyframes textShine {
+  0% { background-position: -100% 0; }
+  50% { background-position: 100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+  }
+  50% { 
+    transform: translateY(-5px) scale(1.02);
+    filter: drop-shadow(0 5px 15px rgba(0, 212, 255, 0.5));
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(0, 212, 255, 0.3),
+      0 0 20px rgba(0, 212, 255, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(0, 212, 255, 0.6),
+      0 0 30px rgba(0, 212, 255, 0.4),
+      0 0 40px rgba(0, 212, 255, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Efectos para partículas del h1 */
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(-50px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0);
+  }
+}
+
+/* Efecto de hover glow */
+#home h1.hover-glow {
+  animation-duration: 2s, 3s, 1.5s;
+  transform: scale(1.05);
+  text-shadow: 
+    0 0 25px rgba(0, 212, 255, 0.8),
+    0 0 35px rgba(0, 212, 255, 0.6),
+    0 0 45px rgba(0, 212, 255, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Efecto de onda en click */
+@keyframes waveExpand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Efecto de burst en hover */
+@keyframes burstOut {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--end-x) - 50%), calc(var(--end-y) - 50%)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Contenedor de partículas del h1 */
+.h1-particles {
+  overflow: visible;
+}
+
+.h1-particle {
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Efectos mejorados para el h1 */
+#home h1.enhanced-effects {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#home h1.enhanced-effects:hover {
+  filter: brightness(1.2);
+}
+
+/* Responsive para efectos avanzados */
+@media (max-width: 768px) {
+  @keyframes subtleFloat {
+    0%, 100% { 
+      transform: translateY(0px) scale(1);
+    }
+    50% { 
+      transform: translateY(-3px) scale(1.01);
+    }
+  }
+  
+  #home h1.hover-glow {
+    transform: scale(1.02);
+  }
+  
+  .h1-particles {
+    display: none; /* Ocultar partículas en móviles para mejor rendimiento */
+  }
+}
+
+/* Soporte para usuarios que prefieren animaciones reducidas */
+@media (prefers-reduced-motion: reduce) {
+  #home h1 {
+    animation: none !important;
+  }
+  
+  #home h1.hover-glow {
+    animation: none;
+    transform: none;
+  }
+  
+  .h1-particles,
+  .hover-particle,
+  .click-wave {
+    display: none;
+  }
+  
+  @keyframes textShine {
+    0%, 100% { opacity: 1; }
+  }
+  
+  @keyframes subtleFloat {
+    0%, 100% { opacity: 1; }
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { opacity: 1; }
+  }
+  
+  @keyframes particleFloat {
+    0%, 100% { opacity: 1; }
+  }
+  
+  @keyframes waveExpand {
+    0%, 100% { opacity: 1; }
+  }
+  
+  @keyframes burstOut {
+    0%, 100% { opacity: 1; }
+  }
+}
+
+/* Mejoras adicionales para el cursor y interactividad */
+#home h1.enhanced-effects {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Efecto de enfoque para accesibilidad */
+#home h1:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 

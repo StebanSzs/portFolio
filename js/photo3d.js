@@ -23,10 +23,10 @@ class ProfilePhoto3D {
       }
     });
 
-    // Eventos de click para activar rotación especial
-    this.photo.addEventListener('click', () => {
-      this.activateSpecialRotation();
-    });
+    // Eventos de click desactivados para evitar animación no deseada
+    // this.photo.addEventListener('click', () => {
+    //   this.activateSpecialRotation();
+    // });
 
     // Reset al salir del contenedor
     this.container.addEventListener('mouseleave', () => {
@@ -73,6 +73,8 @@ class ProfilePhoto3D {
     }
   }
 
+  // Función desactivada para prevenir animación de click
+  /*
   activateSpecialRotation() {
     this.isActive = true;
     this.photo.style.animation = 'none';
@@ -138,6 +140,7 @@ class ProfilePhoto3D {
       }, 1500);
     }
   }
+  */
 
   resetTransform() {
     if (!this.isActive) {

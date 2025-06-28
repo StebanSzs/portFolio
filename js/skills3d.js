@@ -90,13 +90,16 @@ class Skills3D {
   }
 
   setupClickEffects() {
-    this.skillItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        this.triggerClickAnimation(item, index);
-      });
-    });
+    // Desactivado: Removemos los event listeners de click para evitar el volteo
+    // this.skillItems.forEach((item, index) => {
+    //   item.addEventListener('click', () => {
+    //     this.triggerClickAnimation(item, index);
+    //   });
+    // });
   }
 
+  // Función desactivada para prevenir animación de volteo
+  /*
   triggerClickAnimation(item, index) {
     // Desactivar la animación float temporalmente
     item.style.animation = 'none';
@@ -141,6 +144,7 @@ class Skills3D {
       this.resetItemState(item);
     }, 1500);
   }
+  */
 
   createSkillParticles(item) {
     const rect = item.getBoundingClientRect();
